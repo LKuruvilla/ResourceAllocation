@@ -12,26 +12,26 @@ namespace WebApplication42.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class volunteer
+    public partial class eve
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public volunteer()
+        public eve()
         {
-            this.vol_addr = new HashSet<vol_addr>();
-            this.volunteerlogins = new HashSet<volunteerlogin>();
+            this.requestresources = new HashSet<requestresource>();
+            this.eventaddresses = new HashSet<eventaddress>();
+            this.volunteerresources = new HashSet<volunteerresource>();
         }
     
-        public int VID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string MiddleInitial { get; set; }
-        public int Phone { get; set; }
-        public string EMail { get; set; }
-        public string DOB { get; set; }
+        public int EventID { get; set; }
+        public string Description { get; set; }
+        public int UserID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<vol_addr> vol_addr { get; set; }
+        public virtual ICollection<requestresource> requestresources { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<volunteerlogin> volunteerlogins { get; set; }
+        public virtual ICollection<eventaddress> eventaddresses { get; set; }
+        public virtual user user { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<volunteerresource> volunteerresources { get; set; }
     }
 }

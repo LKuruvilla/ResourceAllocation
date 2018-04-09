@@ -7,7 +7,7 @@ using WebApplication42.Models;
 
 namespace WebApplication42.Controllers
 {
-    [Authorize]
+    
     public class RequestController : Controller
     {
         // GET: Request
@@ -42,28 +42,28 @@ namespace WebApplication42.Controllers
                     y.State = v.State;
                     y.ZipCode = v.ZipCode;
                     y.Street = v.Street;
-                    y.HID = v.HID;
+                   // y.HID = v.HID;
 
 
                     s.req_addr.Add(y);
 
 
                     req_desc x = new req_desc();
-                    x.HID = v.HID;
+                  //  x.HID = v.HID;
                     x.description = v.description;
 
                     s.req_desc.Add(x);
 
-                    request vo = new request();
-                    vo.HID = v.HID;
+                    helpreq vo = new helpreq();
+                   // vo.HID = v.HID;
                     vo.FirstName = v.FirstName;
                     vo.MiddleInitial = v.MiddleInitial;
                     vo.LastName = v.LastName;
-                    vo.Phone = v.Phone;
+                    vo.Phone = v.Phone.ToString();
                     vo.EMail = v.EMail;
 
 
-                    s.requests.Add(vo);
+                    s.helpreqs.Add(vo);
                     s.SaveChanges();
 
                 }
@@ -73,7 +73,7 @@ namespace WebApplication42.Controllers
             //We have an error return the model to the view
             return View(v);
         }
-        public ActionResult Posted(request r)
+        public ActionResult Posted(helpreq r)
         {
             return View();
         }

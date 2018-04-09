@@ -16,7 +16,15 @@ namespace WebApplication42.Models
     {
         
         public int VID { get; set; }
+
         [Required]
+        public int EID { get; set; }
+
+
+
+        [Required]
+
+
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
@@ -24,7 +32,8 @@ namespace WebApplication42.Models
         public string MiddleInitial { get; set; }
 
         [Required]
-        public int Phone { get; set; }
+        [Phone]
+        public long Phone { get; set; }
 
         [Required]
         [EmailAddress]

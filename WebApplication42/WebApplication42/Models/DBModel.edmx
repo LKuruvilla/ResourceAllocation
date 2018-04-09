@@ -1,0 +1,698 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="shModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="eve">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="eventaddress">
+          <Key>
+            <PropertyRef Name="EventAddID" />
+          </Key>
+          <Property Name="EventAddID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Street" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="Street2" Type="varchar" MaxLength="128" />
+          <Property Name="city" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="state" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="zipcode" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="EventID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="requestresources">
+          <Key>
+            <PropertyRef Name="RequestID" />
+          </Key>
+          <Property Name="RequestID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Amount" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="256" />
+          <Property Name="Delivered" Type="int" Nullable="false" />
+          <Property Name="EventID" Type="int" Nullable="false" />
+          <Property Name="ResourceID" Type="int" Nullable="false" />
+          <Property Name="userID" Type="int" />
+        </EntityType>
+        <EntityType Name="requsetaddress">
+          <Key>
+            <PropertyRef Name="ReqAddID" />
+          </Key>
+          <Property Name="ReqAddID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="street" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="street2" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="city" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="state" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="zipcode" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="RequestID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="resourcetype">
+          <Key>
+            <PropertyRef Name="ResourceID" />
+          </Key>
+          <Property Name="ResourceID" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userName" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="useraddress">
+          <Key>
+            <PropertyRef Name="AddID" />
+          </Key>
+          <Property Name="AddID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Street" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="Street2" Type="varchar" MaxLength="128" />
+          <Property Name="city" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="state" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="zipcode" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="userinformation">
+          <Key>
+            <PropertyRef Name="UiID" />
+          </Key>
+          <Property Name="UiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="MiddleInitial" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="volunteerresources">
+          <Key>
+            <PropertyRef Name="VRID" />
+          </Key>
+          <Property Name="VRID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Amount" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="256" />
+          <Property Name="Delivered" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="ResourceID" Type="int" Nullable="false" />
+          <Property Name="EventID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_254">
+          <End Role="eve" Type="Self.eve" Multiplicity="1" />
+          <End Role="requestresources" Type="Self.requestresources" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eve">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="requestresources">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_259">
+          <End Role="resourcetype" Type="Self.resourcetype" Multiplicity="1" />
+          <End Role="requestresources" Type="Self.requestresources" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="resourcetype">
+              <PropertyRef Name="ResourceID" />
+            </Principal>
+            <Dependent Role="requestresources">
+              <PropertyRef Name="ResourceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_263">
+          <End Role="requestresources" Type="Self.requestresources" Multiplicity="1" />
+          <End Role="requsetaddress" Type="Self.requsetaddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="requestresources">
+              <PropertyRef Name="RequestID" />
+            </Principal>
+            <Dependent Role="requsetaddress">
+              <PropertyRef Name="RequestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_267">
+          <End Role="eve" Type="Self.eve" Multiplicity="1" />
+          <End Role="eventaddress" Type="Self.eventaddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eve">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="eventaddress">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_278">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="userinformation" Type="Self.userinformation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="userinformation">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_282">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="useraddress" Type="Self.useraddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="useraddress">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_286">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="volunteerresources" Type="Self.volunteerresources" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="volunteerresources">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_290">
+          <End Role="resourcetype" Type="Self.resourcetype" Multiplicity="1" />
+          <End Role="volunteerresources" Type="Self.volunteerresources" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="resourcetype">
+              <PropertyRef Name="ResourceID" />
+            </Principal>
+            <Dependent Role="volunteerresources">
+              <PropertyRef Name="ResourceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_294">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="eve" Type="Self.eve" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="eve">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_298">
+          <End Role="eve" Type="Self.eve" Multiplicity="1" />
+          <End Role="volunteerresources" Type="Self.volunteerresources" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eve">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="volunteerresources">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="shModelStoreContainer">
+          <EntitySet Name="eve" EntityType="Self.eve" Schema="sh" store:Type="Tables" />
+          <EntitySet Name="eventaddress" EntityType="Self.eventaddress" Schema="sh" store:Type="Tables" />
+          <EntitySet Name="requestresources" EntityType="Self.requestresources" Schema="sh" store:Type="Tables" />
+          <EntitySet Name="requsetaddress" EntityType="Self.requsetaddress" Schema="sh" store:Type="Tables" />
+          <EntitySet Name="resourcetype" EntityType="Self.resourcetype" Schema="sh" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="sh" store:Type="Tables" />
+          <EntitySet Name="useraddress" EntityType="Self.useraddress" Schema="sh" store:Type="Tables" />
+          <EntitySet Name="userinformation" EntityType="Self.userinformation" Schema="sh" store:Type="Tables" />
+          <EntitySet Name="volunteerresources" EntityType="Self.volunteerresources" Schema="sh" store:Type="Tables" />
+          <AssociationSet Name="FK_254" Association="Self.FK_254">
+            <End Role="eve" EntitySet="eve" />
+            <End Role="requestresources" EntitySet="requestresources" />
+          </AssociationSet>
+          <AssociationSet Name="FK_259" Association="Self.FK_259">
+            <End Role="resourcetype" EntitySet="resourcetype" />
+            <End Role="requestresources" EntitySet="requestresources" />
+          </AssociationSet>
+          <AssociationSet Name="FK_263" Association="Self.FK_263">
+            <End Role="requestresources" EntitySet="requestresources" />
+            <End Role="requsetaddress" EntitySet="requsetaddress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_267" Association="Self.FK_267">
+            <End Role="eve" EntitySet="eve" />
+            <End Role="eventaddress" EntitySet="eventaddress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_278" Association="Self.FK_278">
+            <End Role="user" EntitySet="user" />
+            <End Role="userinformation" EntitySet="userinformation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_282" Association="Self.FK_282">
+            <End Role="user" EntitySet="user" />
+            <End Role="useraddress" EntitySet="useraddress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_286" Association="Self.FK_286">
+            <End Role="user" EntitySet="user" />
+            <End Role="volunteerresources" EntitySet="volunteerresources" />
+          </AssociationSet>
+          <AssociationSet Name="FK_290" Association="Self.FK_290">
+            <End Role="resourcetype" EntitySet="resourcetype" />
+            <End Role="volunteerresources" EntitySet="volunteerresources" />
+          </AssociationSet>
+          <AssociationSet Name="FK_294" Association="Self.FK_294">
+            <End Role="user" EntitySet="user" />
+            <End Role="eve" EntitySet="eve" />
+          </AssociationSet>
+          <AssociationSet Name="FK_298" Association="Self.FK_298">
+            <End Role="eve" EntitySet="eve" />
+            <End Role="volunteerresources" EntitySet="volunteerresources" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="shModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="eve">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="requestresources" Relationship="Self.FK_254" FromRole="eve" ToRole="requestresources" />
+          <NavigationProperty Name="eventaddresses" Relationship="Self.FK_267" FromRole="eve" ToRole="eventaddress" />
+          <NavigationProperty Name="user" Relationship="Self.FK_294" FromRole="eve" ToRole="user" />
+          <NavigationProperty Name="volunteerresources" Relationship="Self.FK_298" FromRole="eve" ToRole="volunteerresources" />
+        </EntityType>
+        <EntityType Name="eventaddress">
+          <Key>
+            <PropertyRef Name="EventAddID" />
+          </Key>
+          <Property Name="EventAddID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Street" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Street2" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="city" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="state" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="zipcode" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EventID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="eve" Relationship="Self.FK_267" FromRole="eventaddress" ToRole="eve" />
+        </EntityType>
+        <EntityType Name="requestresource">
+          <Key>
+            <PropertyRef Name="RequestID" />
+          </Key>
+          <Property Name="RequestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Amount" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="Delivered" Type="Int32" Nullable="false" />
+          <Property Name="EventID" Type="Int32" Nullable="false" />
+          <Property Name="ResourceID" Type="Int32" Nullable="false" />
+          <Property Name="userID" Type="Int32" />
+          <NavigationProperty Name="eve" Relationship="Self.FK_254" FromRole="requestresources" ToRole="eve" />
+          <NavigationProperty Name="resourcetype" Relationship="Self.FK_259" FromRole="requestresources" ToRole="resourcetype" />
+          <NavigationProperty Name="requsetaddresses" Relationship="Self.FK_263" FromRole="requestresources" ToRole="requsetaddress" />
+        </EntityType>
+        <EntityType Name="requsetaddress">
+          <Key>
+            <PropertyRef Name="ReqAddID" />
+          </Key>
+          <Property Name="ReqAddID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="street" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="street2" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="city" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="state" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="zipcode" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RequestID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="requestresource" Relationship="Self.FK_263" FromRole="requsetaddress" ToRole="requestresources" />
+        </EntityType>
+        <EntityType Name="resourcetype">
+          <Key>
+            <PropertyRef Name="ResourceID" />
+          </Key>
+          <Property Name="ResourceID" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="requestresources" Relationship="Self.FK_259" FromRole="resourcetype" ToRole="requestresources" />
+          <NavigationProperty Name="volunteerresources" Relationship="Self.FK_290" FromRole="resourcetype" ToRole="volunteerresources" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="eves" Relationship="Self.FK_294" FromRole="user" ToRole="eve" />
+          <NavigationProperty Name="userinformations" Relationship="Self.FK_278" FromRole="user" ToRole="userinformation" />
+          <NavigationProperty Name="useraddresses" Relationship="Self.FK_282" FromRole="user" ToRole="useraddress" />
+          <NavigationProperty Name="volunteerresources" Relationship="Self.FK_286" FromRole="user" ToRole="volunteerresources" />
+        </EntityType>
+        <EntityType Name="useraddress">
+          <Key>
+            <PropertyRef Name="AddID" />
+          </Key>
+          <Property Name="AddID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Street" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Street2" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="city" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="state" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="zipcode" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="Self.FK_282" FromRole="useraddress" ToRole="user" />
+        </EntityType>
+        <EntityType Name="userinformation">
+          <Key>
+            <PropertyRef Name="UiID" />
+          </Key>
+          <Property Name="UiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MiddleInitial" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="Self.FK_278" FromRole="userinformation" ToRole="user" />
+        </EntityType>
+        <EntityType Name="volunteerresource">
+          <Key>
+            <PropertyRef Name="VRID" />
+          </Key>
+          <Property Name="VRID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Amount" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="Delivered" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="ResourceID" Type="Int32" Nullable="false" />
+          <Property Name="EventID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="eve" Relationship="Self.FK_298" FromRole="volunteerresources" ToRole="eve" />
+          <NavigationProperty Name="resourcetype" Relationship="Self.FK_290" FromRole="volunteerresources" ToRole="resourcetype" />
+          <NavigationProperty Name="user" Relationship="Self.FK_286" FromRole="volunteerresources" ToRole="user" />
+        </EntityType>
+        <Association Name="FK_254">
+          <End Role="eve" Type="Self.eve" Multiplicity="1" />
+          <End Role="requestresources" Type="Self.requestresource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eve">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="requestresources">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_267">
+          <End Role="eve" Type="Self.eve" Multiplicity="1" />
+          <End Role="eventaddress" Type="Self.eventaddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eve">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="eventaddress">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_294">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="eve" Type="Self.eve" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="eve">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_298">
+          <End Role="eve" Type="Self.eve" Multiplicity="1" />
+          <End Role="volunteerresources" Type="Self.volunteerresource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eve">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="volunteerresources">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_259">
+          <End Role="resourcetype" Type="Self.resourcetype" Multiplicity="1" />
+          <End Role="requestresources" Type="Self.requestresource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="resourcetype">
+              <PropertyRef Name="ResourceID" />
+            </Principal>
+            <Dependent Role="requestresources">
+              <PropertyRef Name="ResourceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_263">
+          <End Role="requestresources" Type="Self.requestresource" Multiplicity="1" />
+          <End Role="requsetaddress" Type="Self.requsetaddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="requestresources">
+              <PropertyRef Name="RequestID" />
+            </Principal>
+            <Dependent Role="requsetaddress">
+              <PropertyRef Name="RequestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_290">
+          <End Role="resourcetype" Type="Self.resourcetype" Multiplicity="1" />
+          <End Role="volunteerresources" Type="Self.volunteerresource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="resourcetype">
+              <PropertyRef Name="ResourceID" />
+            </Principal>
+            <Dependent Role="volunteerresources">
+              <PropertyRef Name="ResourceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_278">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="userinformation" Type="Self.userinformation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="userinformation">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_282">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="useraddress" Type="Self.useraddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="useraddress">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_286">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="volunteerresources" Type="Self.volunteerresource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="volunteerresources">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBModels" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="eves" EntityType="Self.eve" />
+          <EntitySet Name="eventaddresses" EntityType="Self.eventaddress" />
+          <EntitySet Name="requestresources" EntityType="Self.requestresource" />
+          <EntitySet Name="requsetaddresses" EntityType="Self.requsetaddress" />
+          <EntitySet Name="resourcetypes" EntityType="Self.resourcetype" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <EntitySet Name="useraddresses" EntityType="Self.useraddress" />
+          <EntitySet Name="userinformations" EntityType="Self.userinformation" />
+          <EntitySet Name="volunteerresources" EntityType="Self.volunteerresource" />
+          <AssociationSet Name="FK_254" Association="Self.FK_254">
+            <End Role="eve" EntitySet="eves" />
+            <End Role="requestresources" EntitySet="requestresources" />
+          </AssociationSet>
+          <AssociationSet Name="FK_267" Association="Self.FK_267">
+            <End Role="eve" EntitySet="eves" />
+            <End Role="eventaddress" EntitySet="eventaddresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_294" Association="Self.FK_294">
+            <End Role="user" EntitySet="users" />
+            <End Role="eve" EntitySet="eves" />
+          </AssociationSet>
+          <AssociationSet Name="FK_298" Association="Self.FK_298">
+            <End Role="eve" EntitySet="eves" />
+            <End Role="volunteerresources" EntitySet="volunteerresources" />
+          </AssociationSet>
+          <AssociationSet Name="FK_259" Association="Self.FK_259">
+            <End Role="resourcetype" EntitySet="resourcetypes" />
+            <End Role="requestresources" EntitySet="requestresources" />
+          </AssociationSet>
+          <AssociationSet Name="FK_263" Association="Self.FK_263">
+            <End Role="requestresources" EntitySet="requestresources" />
+            <End Role="requsetaddress" EntitySet="requsetaddresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_290" Association="Self.FK_290">
+            <End Role="resourcetype" EntitySet="resourcetypes" />
+            <End Role="volunteerresources" EntitySet="volunteerresources" />
+          </AssociationSet>
+          <AssociationSet Name="FK_278" Association="Self.FK_278">
+            <End Role="user" EntitySet="users" />
+            <End Role="userinformation" EntitySet="userinformations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_282" Association="Self.FK_282">
+            <End Role="user" EntitySet="users" />
+            <End Role="useraddress" EntitySet="useraddresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_286" Association="Self.FK_286">
+            <End Role="user" EntitySet="users" />
+            <End Role="volunteerresources" EntitySet="volunteerresources" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="shModelStoreContainer" CdmEntityContainer="DBModels">
+          <EntitySetMapping Name="eves">
+            <EntityTypeMapping TypeName="shModel.eve">
+              <MappingFragment StoreEntitySet="eve">
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="eventaddresses">
+            <EntityTypeMapping TypeName="shModel.eventaddress">
+              <MappingFragment StoreEntitySet="eventaddress">
+                <ScalarProperty Name="EventAddID" ColumnName="EventAddID" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="Street2" ColumnName="Street2" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="requestresources">
+            <EntityTypeMapping TypeName="shModel.requestresource">
+              <MappingFragment StoreEntitySet="requestresources">
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Delivered" ColumnName="Delivered" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="ResourceID" ColumnName="ResourceID" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="requsetaddresses">
+            <EntityTypeMapping TypeName="shModel.requsetaddress">
+              <MappingFragment StoreEntitySet="requsetaddress">
+                <ScalarProperty Name="ReqAddID" ColumnName="ReqAddID" />
+                <ScalarProperty Name="street" ColumnName="street" />
+                <ScalarProperty Name="street2" ColumnName="street2" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="resourcetypes">
+            <EntityTypeMapping TypeName="shModel.resourcetype">
+              <MappingFragment StoreEntitySet="resourcetype">
+                <ScalarProperty Name="ResourceID" ColumnName="ResourceID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="shModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="useraddresses">
+            <EntityTypeMapping TypeName="shModel.useraddress">
+              <MappingFragment StoreEntitySet="useraddress">
+                <ScalarProperty Name="AddID" ColumnName="AddID" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="Street2" ColumnName="Street2" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="userinformations">
+            <EntityTypeMapping TypeName="shModel.userinformation">
+              <MappingFragment StoreEntitySet="userinformation">
+                <ScalarProperty Name="UiID" ColumnName="UiID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleInitial" ColumnName="MiddleInitial" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="volunteerresources">
+            <EntityTypeMapping TypeName="shModel.volunteerresource">
+              <MappingFragment StoreEntitySet="volunteerresources">
+                <ScalarProperty Name="VRID" ColumnName="VRID" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Delivered" ColumnName="Delivered" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ResourceID" ColumnName="ResourceID" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

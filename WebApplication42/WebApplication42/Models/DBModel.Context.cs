@@ -25,13 +25,14 @@ namespace WebApplication42.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<@event> events { get; set; }
-        public virtual DbSet<organizer> organizers { get; set; }
-        public virtual DbSet<req_addr> req_addr { get; set; }
-        public virtual DbSet<req_desc> req_desc { get; set; }
-        public virtual DbSet<request> requests { get; set; }
-        public virtual DbSet<vol_addr> vol_addr { get; set; }
-        public virtual DbSet<volunteerlogin> volunteerlogins { get; set; }
-        public virtual DbSet<volunteer> volunteers { get; set; }
+        public virtual DbSet<eve> eves { get; set; }
+        public virtual DbSet<eventaddress> eventaddresses { get; set; }
+        public virtual DbSet<requestresource> requestresources { get; set; }
+        public virtual DbSet<requsetaddress> requsetaddresses { get; set; }
+        public virtual DbSet<resourcetype> resourcetypes { get; set; }
+        public virtual DbSet<user> users { get; set; }
+        public virtual DbSet<useraddress> useraddresses { get; set; }
+        public virtual DbSet<userinformation> userinformations { get; set; }
+        public virtual DbSet<volunteerresource> volunteerresources { get; set; }
     }
 }

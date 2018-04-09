@@ -12,15 +12,16 @@ namespace WebApplication42.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class req_addr
+    public partial class eventaddress
     {
-        public Nullable<int> HID { get; set; }
+        public int EventAddID { get; set; }
         public string Street { get; set; }
-        public string Apt { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string ZipCode { get; set; }
+        public string Street2 { get; set; }
+        public string city { get; set; }
+        public string state { get; set; }
+        public string zipcode { get; set; }
+        public int EventID { get; set; }
     
-        public virtual request request { get; set; }
+        public virtual eve eve { get; set; }
     }
 }

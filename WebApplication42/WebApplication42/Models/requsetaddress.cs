@@ -12,13 +12,16 @@ namespace WebApplication42.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class organizer
+    public partial class requsetaddress
     {
-        public int OID { get; set; }
-        public Nullable<int> ID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public int Phone { get; set; }
-        public string EMail { get; set; }
+        public int ReqAddID { get; set; }
+        public string street { get; set; }
+        public string street2 { get; set; }
+        public string city { get; set; }
+        public string state { get; set; }
+        public string zipcode { get; set; }
+        public int RequestID { get; set; }
+    
+        public virtual requestresource requestresource { get; set; }
     }
 }

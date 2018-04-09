@@ -12,11 +12,16 @@ namespace WebApplication42.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class req_desc
+    public partial class userinformation
     {
-        public int HID { get; set; }
-        public string description { get; set; }
+        public int UiID { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string MiddleInitial { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+        public int UserID { get; set; }
     
-        public virtual request request { get; set; }
+        public virtual user user { get; set; }
     }
 }

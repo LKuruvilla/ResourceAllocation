@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="36b145584a6948e291837056a6db1385" Name="Diagram1">
+        <EntityTypeShape EntityType="shModel.eve" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="shModel.eventaddress" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="shModel.requestresource" Width="1.5" PointX="8.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="shModel.requsetaddress" Width="1.5" PointX="10.5" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="shModel.resourcetype" Width="1.5" PointX="6" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="shModel.user" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="shModel.useraddress" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="shModel.userinformation" Width="1.5" PointX="3" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="shModel.volunteerresource" Width="1.5" PointX="5.25" PointY="8.75" IsExpanded="true" />
+        <AssociationConnector Association="shModel.FK_254" ManuallyRouted="false" />
+        <AssociationConnector Association="shModel.FK_267" ManuallyRouted="false" />
+        <AssociationConnector Association="shModel.FK_294" ManuallyRouted="false" />
+        <AssociationConnector Association="shModel.FK_298" ManuallyRouted="false" />
+        <AssociationConnector Association="shModel.FK_259" ManuallyRouted="false" />
+        <AssociationConnector Association="shModel.FK_263" ManuallyRouted="false" />
+        <AssociationConnector Association="shModel.FK_290" ManuallyRouted="false" />
+        <AssociationConnector Association="shModel.FK_278" ManuallyRouted="false" />
+        <AssociationConnector Association="shModel.FK_282" ManuallyRouted="false" />
+        <AssociationConnector Association="shModel.FK_286" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -12,12 +12,16 @@ namespace WebApplication42.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class volunteerlogin
+    public partial class useraddress
     {
-        public Nullable<int> ID { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
+        public int AddID { get; set; }
+        public string Street { get; set; }
+        public string Street2 { get; set; }
+        public string city { get; set; }
+        public string state { get; set; }
+        public string zipcode { get; set; }
+        public int UserID { get; set; }
     
-        public virtual volunteer volunteer { get; set; }
+        public virtual user user { get; set; }
     }
 }

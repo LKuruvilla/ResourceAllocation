@@ -19,7 +19,8 @@ namespace WebApplication42.Models
         public string MiddleInitial { get; set; }
 
         [Required]
-        public int Phone { get; set; }
+        [Phone]
+        public long Phone { get; set; }
 
         [Required]
         [EmailAddress]

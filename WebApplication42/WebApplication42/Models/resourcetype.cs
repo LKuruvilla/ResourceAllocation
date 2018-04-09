@@ -12,23 +12,21 @@ namespace WebApplication42.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class request
+    public partial class resourcetype
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public request()
+        public resourcetype()
         {
-            this.req_addr = new HashSet<req_addr>();
+            this.requestresources = new HashSet<requestresource>();
+            this.volunteerresources = new HashSet<volunteerresource>();
         }
     
-        public int HID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string MiddleInitial { get; set; }
-        public int Phone { get; set; }
-        public string EMail { get; set; }
+        public int ResourceID { get; set; }
+        public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<req_addr> req_addr { get; set; }
-        public virtual req_desc req_desc { get; set; }
+        public virtual ICollection<requestresource> requestresources { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<volunteerresource> volunteerresources { get; set; }
     }
 }

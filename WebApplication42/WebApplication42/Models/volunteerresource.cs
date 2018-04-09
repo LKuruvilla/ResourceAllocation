@@ -12,15 +12,18 @@ namespace WebApplication42.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class vol_addr
+    public partial class volunteerresource
     {
-        public Nullable<int> VID { get; set; }
-        public string Street { get; set; }
-        public string Apt { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string ZipCode { get; set; }
+        public int VRID { get; set; }
+        public int Amount { get; set; }
+        public string Description { get; set; }
+        public int Delivered { get; set; }
+        public int UserID { get; set; }
+        public int ResourceID { get; set; }
+        public int EventID { get; set; }
     
-        public virtual volunteer volunteer { get; set; }
+        public virtual eve eve { get; set; }
+        public virtual resourcetype resourcetype { get; set; }
+        public virtual user user { get; set; }
     }
 }

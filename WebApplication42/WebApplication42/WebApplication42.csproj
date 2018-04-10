@@ -163,6 +163,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RequestController.cs" />
+    <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -187,6 +189,8 @@
     <Compile Include="Models\eventaddress.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\eventtab.cs" />
+    <Compile Include="Models\reqtab.cs" />
     <Compile Include="Models\requestresource.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -205,6 +209,7 @@
     <Compile Include="Models\userinformation.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\voltab.cs" />
     <Compile Include="Models\volunteerresource.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -259,9 +264,22 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Register\Register.cshtml" />
+    <Content Include="Views\Register\login.cshtml" />
+    <Content Include="Views\Request\Create.cshtml" />
+    <Content Include="Views\Request\Posted.cshtml" />
+    <Content Include="Views\Register\AccountRegistered.cshtml" />
+    <Content Include="Views\AccessCheck\Index.cshtml" />
+    <Content Include="Views\AccessCheck\loggedin.cshtml" />
+    <Content Include="Views\Organizer\Index.cshtml" />
+    <Content Include="Views\Organizer\NoEvents.cshtml" />
+    <Content Include="Views\Organizer\CreateEvent.cshtml" />
+    <Content Include="Views\Organizer\ViewEvents.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

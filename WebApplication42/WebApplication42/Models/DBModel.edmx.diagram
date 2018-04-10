@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="36b145584a6948e291837056a6db1385" Name="Diagram1">
+      <Diagram DiagramId="f77f5e4b99b043c48afaf2f5322c892a" Name="Diagram1">
         <EntityTypeShape EntityType="shModel.eve" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="shModel.eventaddress" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="shModel.requestresource" Width="1.5" PointX="8.25" PointY="5.125" IsExpanded="true" />

@@ -1,0 +1,46 @@
+﻿@model WebApplication42.Models.ListModel<WebApplication42.Models.eve>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+@if (Model != null )
+{
+    foreach (var item in Model.Items)
+    {
+    <h2>Index</h2>
+    <tr>
+    <th>Event ID</th>
+    <th>Description</th>
+    <th>Street</th>
+    <th>Street 2</th>
+    <th>City</th>
+    <th>State</th>
+    <th>Zip</th>
+    </tr>
+    <tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.EventID)<br />
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Description)<br />
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.eventaddresses.FirstOrDefault().Street)<br />
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.eventaddresses.FirstOrDefault().Street2)<br />
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.eventaddresses.FirstOrDefault().city)<br />
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.eventaddresses.FirstOrDefault().state)<br />
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.eventaddresses.FirstOrDefault().zipcode)<br />
+    </td>
+    </tr>
+    }
+}

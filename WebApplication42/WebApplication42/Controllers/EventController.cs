@@ -12,7 +12,11 @@ namespace WebApplication42.Controllers
     {   
         public ActionResult Create()
         {
+<<<<<<< HEAD
             return View(new CreateEvent());
+=======
+            return View();
+>>>>>>> 29fed5ee94e5fee66b443b706ba64e4a4bac6165
         }
 
         // POST: Event/Create

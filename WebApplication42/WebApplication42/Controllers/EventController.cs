@@ -3,46 +3,46 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication42.Models;
 
 namespace WebApplication42.Controllers
 {
+    [Authorize]
     public class EventController : Controller
-    {
-        // GET: Event
-        public ActionResult Index()
-        { 
-
-            //TODO look up events tied to this user and return them.
-            return View();
-        }
-
-        // GET: Event/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Event/Create
+    {   
         public ActionResult Create()
         {
-
-            return View();
+            return View(new CreateEvent());
         }
 
         // POST: Event/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(CreateEvent c)
         {
-            try
+            using(DBModels db = new DBModels())
             {
-                // TODO: Add insert logic here
+                eve e = new eve();
+                e.EventID = c.EventID;
+                e.Description = c.Description;
+                e.UserID = c.UserID;/// must add later
+                db.eves.Add(e);
 
-                return RedirectToAction("Index");
+                eventaddress ea = new eventaddress();
+                ea.Street = c.street;
+                ea.Street2 = c.street2;
+                ea.city = c.city;
+                ea.state = c.state;
+                ea.zipcode = c.zipcode;
+                db.eventaddresses.Add(ea);
+
+                db.SaveChanges();
+
+                ViewBag.Message = "You event has been posted. Event id is " + ea.EventID.ToString();
+
             }
-            catch
-            {
+            
                 return View();
-            }
+            
         }
 
         // GET: Event/Edit/5

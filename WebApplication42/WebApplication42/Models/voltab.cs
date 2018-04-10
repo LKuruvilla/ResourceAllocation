@@ -15,10 +15,12 @@ namespace WebApplication42.Models
     public class voltab
     {
         
-        public int VID { get; set; }
+        public int userid { get; set; }
 
-        [Required]
-        public int EID { get; set; }
+        public int addid { get; set; }
+
+        public int UiID { get; set; }
+
 
 
 
@@ -39,8 +41,7 @@ namespace WebApplication42.Models
         [EmailAddress]
         public string EMail { get; set; }
 
-        [Required]
-        public string DOB { get; set; }
+        
 
         [Required]
         public string UserName { get; set; }
@@ -51,7 +52,10 @@ namespace WebApplication42.Models
 
         [Required]
         public string Street { get; set; }
+
         
+        public string Street2 { get; set; }
+
         public string Apt { get; set; }
         [Required]
         public string City { get; set; }

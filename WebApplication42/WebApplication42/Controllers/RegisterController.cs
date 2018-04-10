@@ -30,8 +30,45 @@ namespace WebApplication42.Controllers
             //if(ModelState.IsValid)
             //{ 
 
-            using (DBModels s = new DBModels())
+            using (DBModels db = new DBModels())
             {
+                user u = new user();
+                u.UserID = v.userid;
+                u.userName = v.UserName;
+                u.Password = v.Password;
+
+                db.users.Add(u);
+
+                useraddress ua = new useraddress();
+                ua.AddID = v.addid;
+                ua.Street = v.Street;
+                ua.Street2 = v.Street2;
+                ua.city = v.City;
+                ua.zipcode = v.ZipCode;
+                ua.state = v.State;
+                ua.UserID = v.userid;
+
+                db.useraddresses.Add(ua);
+
+                userinformation ui = new userinformation();
+                ui.UiID = v.UiID;
+                ui.FirstName = v.FirstName;
+                ui.LastName = v.LastName;
+                ui.MiddleInitial = v.MiddleInitial;
+                ui.Phone = v.Phone.ToString();
+                ui.Email = v.EMail;
+                ui.UserID = v.userid;
+
+                db.userinformations.Add(ui);
+
+                db.SaveChanges();
+
+
+
+
+
+
+
                 
             }
             return RedirectToAction("AccountRegistered");

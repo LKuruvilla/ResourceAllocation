@@ -81,8 +81,7 @@ namespace WebApplication42.Controllers
         //successfull registration
         public ActionResult AccountRegistered()
         {
-            return View();
-
+                return View();
         }
 
         

@@ -162,6 +162,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RequestController.cs" />
@@ -191,6 +192,7 @@
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\eventtab.cs" />
+    <Compile Include="Models\ListModel.cs" />
     <Compile Include="Models\reqtab.cs" />
     <Compile Include="Models\requestresource.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
@@ -285,6 +287,7 @@
     <Content Include="Views\Organizer\ViewEvents.cshtml" />
     <Content Include="Views\Login\login.cshtml" />
     <Content Include="Views\Login\loggedin.cshtml" />
+    <Content Include="Views\Event\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

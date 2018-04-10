@@ -14,6 +14,7 @@ namespace WebApplication42.Controllers
         userinformation u = new userinformation();
         public ActionResult Index()
         {
+<<<<<<< HEAD
             List<eve> eves = new List<eve>();
             using (DBModels db = new DBModels())
             {
@@ -34,6 +35,9 @@ namespace WebApplication42.Controllers
             u.UserID = x.UserID;
             return View(new CreateEvent());
 
+=======
+            return View(new CreateEvent());
+>>>>>>> 0634a80aaac1f9c247e561f3e2935a7d1e4b2ac2
         }
 
         // POST: Event/Create
@@ -49,7 +53,11 @@ namespace WebApplication42.Controllers
                 eve e = new eve();
                 e.EventID = c.EventID;
                 e.Description = c.Description;
+<<<<<<< HEAD
                 e.UserID = userId; 
+=======
+                e.UserID =1;/// must add later
+>>>>>>> 0634a80aaac1f9c247e561f3e2935a7d1e4b2ac2
                 db.eves.Add(e);
 
                 eventaddress ea = new eventaddress();

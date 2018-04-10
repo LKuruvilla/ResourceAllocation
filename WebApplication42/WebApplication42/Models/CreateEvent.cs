@@ -8,15 +8,15 @@ namespace WebApplication42.Models
     public class CreateEvent
     {
         //Event Table
-        string Description;
-        int UserID;
-        int EventID;
+        public string Description;
+        public int UserID;
+        public int EventID;
 
         //Event Address Table
-        string street;
-        string street2;
-        string city;
-        string state;
-        string zipcode;
+        public string street;
+        public string street2;
+        public string city;
+        public string state;
+        public string zipcode;
     }
 }

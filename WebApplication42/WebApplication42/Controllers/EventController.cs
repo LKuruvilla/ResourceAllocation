@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication42.Models;
 
 namespace WebApplication42.Controllers
 {
@@ -25,7 +26,6 @@ namespace WebApplication42.Controllers
         // GET: Event/Create
         public ActionResult Create()
         {
-
             return View();
         }
 

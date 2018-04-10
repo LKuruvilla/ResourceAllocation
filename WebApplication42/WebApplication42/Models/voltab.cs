@@ -34,7 +34,6 @@ namespace WebApplication42.Models
         public string MiddleInitial { get; set; }
 
         [Required]
-        [Phone]
         public long Phone { get; set; }
 
         [Required]

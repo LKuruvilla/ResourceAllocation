@@ -12,6 +12,8 @@ namespace WebApplication42.Controllers
     {
         public ActionResult login()
         {
+
+
             return View();
         }
         [HttpPost]
@@ -29,11 +31,15 @@ namespace WebApplication42.Controllers
                 {
                     if (vl.userName.Equals(userid) && vl.Password.Equals(pass))
                     {
+                        String user = vl.UserID.ToString();
                         String u = userid;
                         String p = pass;
                         FormsAuthentication.SetAuthCookie(vl.userName, false);
-                       // return RedirectToAction("loggedin", "AccessCheck", vl);
-                        return View("loggedin");
+                       
+
+                        // return RedirectToAction("loggedin", "AccessCheck", vl);
+                        var use = db.userinformations.SingleOrDefault(x => x.UserID.ToString() == user);
+                        return RedirectToAction("Index", "Home", use);
                     }
                 }
 

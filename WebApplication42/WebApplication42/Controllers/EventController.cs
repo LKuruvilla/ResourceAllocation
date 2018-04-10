@@ -7,28 +7,49 @@ using WebApplication42.Models;
 
 namespace WebApplication42.Controllers
 {
+
     [Authorize]
     public class EventController : Controller
-    {   
-        public ActionResult Create()
+    {
+        userinformation u = new userinformation();
+        public ActionResult Index()
         {
-<<<<<<< HEAD
+            List<eve> eves = new List<eve>();
+            using (DBModels db = new DBModels())
+            {
+                eves = db.eves.ToList<eve>();
+            }
+            ListModel<eve> evesModel = new ListModel<eve>(eves);
+
+            return View(evesModel);
+        }
+        public ActionResult Create(userinformation x)
+        {
+            u.UiID = x.UiID;
+            u.FirstName = x.FirstName;
+            u.LastName = x.LastName;
+            u.MiddleInitial = x.MiddleInitial;
+            u.Phone = x.Phone;
+            u.Email = x.Email;
+            u.UserID = x.UserID;
             return View(new CreateEvent());
-=======
-            return View();
->>>>>>> 29fed5ee94e5fee66b443b706ba64e4a4bac6165
+
         }
 
         // POST: Event/Create
         [HttpPost]
         public ActionResult Create(CreateEvent c)
         {
-            using(DBModels db = new DBModels())
+            string name = HttpContext.User.Identity.Name;
+            
+            using (DBModels db = new DBModels())
             {
+                int userId  = db.users.SingleOrDefault(x => x.userName == name).UserID;
+
                 eve e = new eve();
                 e.EventID = c.EventID;
                 e.Description = c.Description;
-                e.UserID = c.UserID;/// must add later
+                e.UserID = userId; 
                 db.eves.Add(e);
 
                 eventaddress ea = new eventaddress();
@@ -40,57 +61,15 @@ namespace WebApplication42.Controllers
                 db.eventaddresses.Add(ea);
 
                 db.SaveChanges();
-
-                ViewBag.Message = "You event has been posted. Event id is " + ea.EventID.ToString();
-
             }
-            
-                return View();
-            
+
+            ViewBag.Message = "Your event has been created.";
+            return RedirectToAction("Posted");
         }
 
-        // GET: Event/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Posted()
         {
             return View();
-        }
-
-        // POST: Event/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Event/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Event/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }

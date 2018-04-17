@@ -20,12 +20,12 @@ namespace WebApplication42.Controllers
         // GET: Volunteer/Create
         public ActionResult Register()
         {
-            return View(new voltab());
+            return View(new register());
         }
 
         // POST: Volunteer/Create
         [HttpPost]
-        public ActionResult Register(voltab v)
+        public ActionResult Register(register v)
         {
             //if(ModelState.IsValid)
             //{ 
@@ -69,7 +69,7 @@ namespace WebApplication42.Controllers
 
 
 
-                
+
             }
             return RedirectToAction("AccountRegistered");
 
@@ -99,11 +99,5 @@ namespace WebApplication42.Controllers
         //    ViewBag.Message = "Wrong username or password";
         //    return View();
         //}
-
-        
-
-       
-
-        
     }
 }

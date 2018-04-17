@@ -167,6 +167,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RequestController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
+    <Compile Include="Controllers\VolunteerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -193,6 +194,7 @@
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ListModel.cs" />
+    <Compile Include="Models\register.cs" />
     <Compile Include="Models\reqtab.cs" />
     <Compile Include="Models\requestresource.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
@@ -290,6 +292,7 @@
     <Content Include="Views\Event\Index.cshtml" />
     <Content Include="Views\Event\Create.cshtml" />
     <Content Include="Views\Event\Posted.cshtml" />
+    <Content Include="Views\Volunteer\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Security;
 using WebApplication42.Models;
 
 namespace WebApplication42.Controllers
@@ -14,128 +12,94 @@ namespace WebApplication42.Controllers
         // GET: Volunteer
         public ActionResult Index()
         {
-            return RedirectToAction("Register");
+            return View();
+        }
+
+        // GET: Volunteer/Details/5
+        public ActionResult Details(int id)
+        {
+            return View();
         }
 
         // GET: Volunteer/Create
-        public ActionResult Register()
+        public ActionResult Create(int id)
         {
-            return View(new voltab());
+            voltab vtab = new voltab();
+
+
+
+            using (DBModels db = new DBModels())
+            {
+
+                var resourc = db.resourcetypes.ToList<resourcetype>().ToList();
+                vtab.resourceList = new SelectList(resourc.Select(x => new { Value = x.ResourceID , Text = x.Description}),
+                   "Value",
+                   "Text"
+                   );
+            }
+
+
+            return View(vtab);
         }
 
         // POST: Volunteer/Create
         [HttpPost]
-        public ActionResult Register(voltab v )
+        public ActionResult Create(voltab v)
         {
-            if (ModelState.IsValid)
+            try
             {
-                
-                using (DBModels s = new DBModels())
-                {
-                    var vregister = s.volunteers.SingleOrDefault(x => x.FirstName == v.FirstName && x.LastName == v.LastName
-                    && x.DOB == v.DOB);
+                // TODO: Add insert logic here
 
-                    var vlregister = s.volunteerlogins.SingleOrDefault(x => x.UserName == v.UserName);
-
-                    if (vregister != null || vlregister !=null)
-                    {
-                        ViewBag.message = "existing account";
-                        ViewBag.x = "yes";
-                        return View();
-                    }
-
-                    
-
-                    else {
-                        volunteer vo = new volunteer();
-                        vo.VID = v.VID;
-                        vo.FirstName = v.FirstName;
-                        vo.MiddleInitial = v.MiddleInitial;
-                        vo.LastName = v.LastName;
-                        vo.Phone = v.Phone;
-                        vo.EMail = v.EMail;
-                        vo.DOB = v.DOB;
-
-                        s.volunteers.Add(vo);
-
-                        vol_addr y = new vol_addr();
-                        y.Apt = v.Apt;
-                        y.City = v.City;
-                        y.State = v.State;
-                        y.ZipCode = v.ZipCode;
-                        y.Street = v.Street;
-                        y.VID = v.VID;
-
-
-                        s.vol_addr.Add(y);
-
-                        volunteerlogin x = new volunteerlogin();
-                        x.ID = v.VID;
-                        x.UserName = v.UserName;
-                        x.Password = v.Password;
-
-                        s.volunteerlogins.Add(x);
-
-                        s.SaveChanges();
-                    }
-                }
-                return RedirectToAction("AccountRegistered");
+                return RedirectToAction("Index");
             }
-
-            //If there were errors in data return view
-            return View(v);
+            catch
+            {
+                return View();
+            }
         }
 
-        //successfull registration
-        public ActionResult AccountRegistered(volunteer v)
-        {
-            return View();
-
-        }
-
-        
         // GET: Volunteer/Edit/5
-        public ActionResult login()
+        public ActionResult Edit(int id)
         {
             return View();
         }
 
         // POST: Volunteer/Edit/5
         [HttpPost]
-        public ActionResult login(volunteerlogin v)
+        public ActionResult Edit(int id, FormCollection collection)
         {
-            String userid = v.UserName;
-            String pass = v.Password;
-
-            List<volunteerlogin> loginlist = new List<volunteerlogin>();
-            using(DBModels db = new DBModels())
+            try
             {
-                loginlist = db.volunteerlogins.ToList();
+                // TODO: Add update logic here
 
-                foreach (var vl in loginlist)
-                {
-                    if (vl.UserName.Equals(userid) && vl.Password.Equals(pass))
-                    {
-                        String u = userid;
-                        String p = pass;
-                        FormsAuthentication.SetAuthCookie(vl.UserName, false);
-                        return RedirectToAction("loggedin","RealV", vl);
-                    }
-                }
-
+                return RedirectToAction("Index");
             }
-
-            return View("wrong");
+            catch
+            {
+                return View();
+            }
         }
 
-        //Wrong username or password
-        public ActionResult wrong()
+        // GET: Volunteer/Delete/5
+        public ActionResult Delete(int id)
         {
             return View();
         }
 
-       
+        // POST: Volunteer/Delete/5
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add delete logic here
 
-        
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
     }
 }

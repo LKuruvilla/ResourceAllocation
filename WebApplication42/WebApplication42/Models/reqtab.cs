@@ -3,28 +3,28 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace WebApplication42.Models
 {
     public class reqtab
     {
 
-        public int HID { get; set; }
+        public int RequestID { get; set; }
 
-        [Required]
-        public string FirstName { get; set; }
-        [Required]
-        public string LastName { get; set; }
+        public int RequestaddID { get; set; }
 
-        public string MiddleInitial { get; set; }
+        public int userID { get; set; }
 
-        [Required]
-        [Phone]
-        public long Phone { get; set; }
+        public int amount { get; set; }
 
-        [Required]
-        [EmailAddress]
-        public string EMail { get; set; }
+        public int resourceID { get; set; }
+
+        public int delivered { get; set; }
+        public int eventID { get; set; }
+        public SelectList resourceList { get; set; }
+
+
 
         [Required]
         public string description { get; set; }
@@ -38,6 +38,8 @@ namespace WebApplication42.Models
         public string State { get; set; }
         [Required]
         public string ZipCode { get; set; }
+
+
         
 
     }

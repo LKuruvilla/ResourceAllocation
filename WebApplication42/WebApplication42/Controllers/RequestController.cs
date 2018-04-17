@@ -23,22 +23,66 @@ namespace WebApplication42.Controllers
         }
 
         // GET: Request/Create
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
-            return View(new reqtab());
+            reqtab rt = new reqtab();
+            rt.eventID = id;
+            using(DBModels db = new DBModels())
+            {
+                var resourc = db.resourcetypes.ToList<resourcetype>().ToList();
+                rt.resourceList = new SelectList(resourc.Select(x => new { Value = x.ResourceID, Text = x.Description }),
+                   "Value",
+                   "Text"
+                   );
+
+             }
+            return View(rt);
         }
 
         // POST: Request/Create
         [HttpPost]
         public ActionResult Create(reqtab v)
         {
-            
+            using (DBModels db = new DBModels())
+            {
+                //string name = HttpContext.User.Identity.Name;
+
+
+                requsetaddress ra = new requsetaddress();
+                ra.city = v.City;
+                ra.street = v.Street;
+                ra.street2 = v.Apt;
+                ra.state = v.State;
+                ra.zipcode = v.ZipCode;
+                ra.ReqAddID = v.RequestaddID;
+                ra.RequestID = v.RequestID;
+
+
+                db.requsetaddresses.Add(ra);
+
+                requestresource rs = new requestresource();
+                rs.RequestID = v.RequestID;
+                rs.Amount = v.amount;
+                rs.Description = v.description;
+                rs.Delivered = v.delivered;
+                rs.EventID = v.eventID;
+                rs.ResourceID = v.resourceID;
+                rs.userID = v.userID;
+
+                db.requestresources.Add(rs);
+
+
+
+                db.SaveChanges();
+            }
+            return RedirectToAction("Posted");
 
             //We have an error return the model to the view
             return View();//v);
         }
         public ActionResult Posted()
         {
+            ViewBag.Message = "Your request has been posted";
             return View();
         }
 

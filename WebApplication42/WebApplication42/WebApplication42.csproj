@@ -278,12 +278,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Register\Register.cshtml" />
     <Content Include="Views\Register\login.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Shared\Request\Create.cshtml" />
     <Content Include="Views\Shared\Request\Posted.cshtml" />
-=======
-    <Content Include="Views\Request\Posted.cshtml" />
->>>>>>> 26f62852304ee86d468f343c7f8122c05f8325d8
     <Content Include="Views\Register\AccountRegistered.cshtml" />
     <Content Include="Views\AccessCheck\Index.cshtml" />
     <Content Include="Views\AccessCheck\loggedin.cshtml" />
@@ -297,12 +293,9 @@
     <Content Include="Views\Event\Create.cshtml" />
     <Content Include="Views\Event\Posted.cshtml" />
     <Content Include="Views\Volunteer\Create.cshtml" />
-<<<<<<< HEAD
-    <Content Include="Views\Volunteer\Posted.cshtml" />
-=======
     <Content Include="Views\Request\Create.cshtml" />
     <Content Include="Views\Register\Posted.cshtml" />
->>>>>>> 26f62852304ee86d468f343c7f8122c05f8325d8
+    <Content Include="Views\Request\Posted.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

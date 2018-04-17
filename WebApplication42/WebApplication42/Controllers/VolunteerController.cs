@@ -26,7 +26,7 @@ namespace WebApplication42.Controllers
         {
             voltab vtab = new voltab();
 
-
+            vtab.EventID = id;
 
             using (DBModels db = new DBModels())
             {
@@ -48,8 +48,24 @@ namespace WebApplication42.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
+                using (DBModels db = new DBModels())
+                {
+                    string name = HttpContext.User.Identity.Name;
 
+                    v.UserID = db.users.SingleOrDefault(x => x.userName == name).UserID;
+
+                    volunteerresource vSource = new volunteerresource();
+                    vSource.Amount = v.Amount;
+                    vSource.Delivered = 0;
+                    vSource.Description = v.Description;
+                    vSource.EventID = v.EventID;
+                    vSource.ResourceID = v.ResourceID;
+                    vSource.UserID = v.UserID;
+
+                    db.volunteerresources.Add(vSource);
+                    
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Index");
             }
             catch

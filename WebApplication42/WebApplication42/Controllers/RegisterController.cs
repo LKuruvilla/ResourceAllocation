@@ -62,14 +62,6 @@ namespace WebApplication42.Controllers
                 db.userinformations.Add(ui);
 
                 db.SaveChanges();
-
-
-
-
-
-
-
-
             }
             return RedirectToAction("AccountRegistered");
 

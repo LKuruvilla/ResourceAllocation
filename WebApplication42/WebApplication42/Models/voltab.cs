@@ -16,17 +16,17 @@ namespace WebApplication42.Models
     public class voltab
     {
         //VRID 
-        public int Amount;
-        public string Description;
-        public int Delivered;
-        public int UserID;
+        public int Amount { get; set; }
+        public string Description { get; set; }
+        public int Delivered { get; set; }
+        public int UserID { get; set; }
 
         //TODO should be picked using a drop down
-        public int ResourceID;
+        public int ResourceID { get; set; }
 
-        public int EventID;
+        public int EventID { get; set; }
 
-        public SelectList resourceList;
+        public SelectList resourceList { get; set; }
 
 
     }

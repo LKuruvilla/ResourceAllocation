@@ -15,13 +15,9 @@ namespace WebApplication42.Models
 
         public int UiID { get; set; }
 
-
-
-
         [Required]
-
-
         public string FirstName { get; set; }
+
         [Required]
         public string LastName { get; set; }
 
@@ -34,8 +30,6 @@ namespace WebApplication42.Models
         [EmailAddress]
         public string EMail { get; set; }
 
-
-
         [Required]
         public string UserName { get; set; }
 
@@ -45,7 +39,6 @@ namespace WebApplication42.Models
 
         [Required]
         public string Street { get; set; }
-
 
         public string Street2 { get; set; }
 

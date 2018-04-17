@@ -278,8 +278,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Register\Register.cshtml" />
     <Content Include="Views\Register\login.cshtml" />
-    <Content Include="Views\Request\Create.cshtml" />
-    <Content Include="Views\Request\Posted.cshtml" />
+    <Content Include="Views\Shared\Request\Create.cshtml" />
+    <Content Include="Views\Shared\Request\Posted.cshtml" />
     <Content Include="Views\Register\AccountRegistered.cshtml" />
     <Content Include="Views\AccessCheck\Index.cshtml" />
     <Content Include="Views\AccessCheck\loggedin.cshtml" />
@@ -293,6 +293,7 @@
     <Content Include="Views\Event\Create.cshtml" />
     <Content Include="Views\Event\Posted.cshtml" />
     <Content Include="Views\Volunteer\Create.cshtml" />
+    <Content Include="Views\Volunteer\Posted.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

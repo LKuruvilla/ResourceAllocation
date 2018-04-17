@@ -21,13 +21,10 @@ namespace WebApplication42.Models
         public int Delivered { get; set; }
         public int UserID { get; set; }
 
-        //TODO should be picked using a drop down
         public int ResourceID { get; set; }
 
         public int EventID { get; set; }
 
         public SelectList resourceList { get; set; }
-
-
     }
 }

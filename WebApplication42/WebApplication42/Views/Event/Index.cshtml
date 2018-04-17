@@ -7,18 +7,16 @@
 {
 
     <h2>Events</h2>
-    <tr>
-        <th>Event ID</th>
-        <th>Description</th>
-        <th>Street</th>
-        <th>Street 2</th>
-        <th>City</th>
-        <th>State</th>
-        <th>Zip</th>
-    </tr>
-    foreach (var item in Model.Items)
-    {
-    <table>
+    <table class="table">
+        <tr>
+            <th>Event ID</th>
+            <th>Description</th>
+            <th></th>
+            <th></th>
+
+        </tr>
+        @foreach (var item in Model.Items)
+        {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.EventID)<br />
@@ -27,10 +25,10 @@
                 @Html.DisplayFor(modelItem => item.Description)<br />
             </td>
             <td>
-                @Html.ActionLink("Volunteer","Create","Volunteer", new { id = item.EventID },null)
+                @Html.ActionLink("Volunteer", "Create", "Volunteer", new { id = item.EventID }, null)
             </td>
             <td>
-                @Html.ActionLink("Request Help", "Create", "Request", new { id = item.EventID },null)
+                @Html.ActionLink("Request Help", "Create", "Request", new { id = item.EventID }, null)
             </td>
             <td>
                 @*@Html.DisplayFor(modelItem => item.eventaddresses.FirstOrDefault().city)<br />*@
@@ -42,8 +40,8 @@
                 @*@Html.DisplayFor(modelItem => item.eventaddresses.FirstOrDefault().zipcode)<br />*@
             </td>
         </tr>
+        }
     </table>
-    }
 }
 
     <div>

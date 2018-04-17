@@ -7,6 +7,7 @@ using WebApplication42.Models;
 
 namespace WebApplication42.Controllers
 {
+    [Authorize]
     public class VolunteerController : Controller
     {
         // GET: Volunteer
@@ -37,8 +38,6 @@ namespace WebApplication42.Controllers
                    "Text"
                    );
             }
-
-
             return View(vtab);
         }
 
@@ -66,7 +65,8 @@ namespace WebApplication42.Controllers
                     
                     db.SaveChanges();
                 }
-                return RedirectToAction("Index");
+                ViewBag.Message = "Thanks for your help!.";
+                return RedirectToAction("Posted");
             }
             catch
             {
@@ -116,6 +116,11 @@ namespace WebApplication42.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult Posted()
+        {
+            return View();
         }
     }
 }

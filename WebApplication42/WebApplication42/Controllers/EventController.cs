@@ -8,7 +8,7 @@ using WebApplication42.Models;
 namespace WebApplication42.Controllers
 {
 
-    [Authorize]
+  
     public class EventController : Controller
     {
         userinformation u = new userinformation();
@@ -23,6 +23,8 @@ namespace WebApplication42.Controllers
 
             return View(evesModel);
         }
+
+        [Authorize]
         public ActionResult Create(userinformation x)
         {
             u.UiID = x.UiID;
@@ -38,6 +40,7 @@ namespace WebApplication42.Controllers
 
         // POST: Event/Create
         [HttpPost]
+        [Authorize]
         public ActionResult Create(CreateEvent c)
         {
             string name = HttpContext.User.Identity.Name;
@@ -68,6 +71,7 @@ namespace WebApplication42.Controllers
             return RedirectToAction("Posted");
         }
 
+        [Authorize]
         public ActionResult Posted()
         {
             return View();

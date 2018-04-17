@@ -59,6 +59,7 @@ namespace WebApplication42.Controllers
                 ui.Email = v.EMail;
                 ui.UserID = v.userid;
 
+
                 db.userinformations.Add(ui);
 
                 db.SaveChanges();
@@ -73,6 +74,7 @@ namespace WebApplication42.Controllers
         //successfull registration
         public ActionResult AccountRegistered()
         {
+            
                 return View();
         }
 

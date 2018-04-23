@@ -43,7 +43,7 @@
           </Key>
           <Property Name="ReqAddID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="street" Type="varchar" MaxLength="128" Nullable="false" />
-          <Property Name="street2" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="street2" Type="varchar" MaxLength="128" />
           <Property Name="city" Type="varchar" MaxLength="32" Nullable="false" />
           <Property Name="state" Type="varchar" MaxLength="32" Nullable="false" />
           <Property Name="zipcode" Type="varchar" MaxLength="15" Nullable="false" />
@@ -83,7 +83,7 @@
           <Property Name="UiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FirstName" Type="varchar" MaxLength="64" Nullable="false" />
           <Property Name="LastName" Type="varchar" MaxLength="64" Nullable="false" />
-          <Property Name="MiddleInitial" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="MiddleInitial" Type="varchar" MaxLength="1" />
           <Property Name="Phone" Type="varchar" MaxLength="11" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="64" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
@@ -322,7 +322,7 @@
           </Key>
           <Property Name="ReqAddID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="street" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="street2" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="street2" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Name="city" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="state" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="zipcode" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
@@ -370,7 +370,7 @@
           <Property Name="UiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FirstName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LastName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="MiddleInitial" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MiddleInitial" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="UserID" Type="Int32" Nullable="false" />

@@ -64,7 +64,7 @@ CREATE TABLE UserInformation
  UiID          int  NOT NULL auto_increment ,
  FirstName     VARCHAR(64) NOT NULL ,
  LastName      VARCHAR(64) NOT NULL ,
- MiddleInitial VARCHAR(1) NOT NULL ,
+ MiddleInitial VARCHAR(1), 
  Phone         VARCHAR(11) NOT NULL ,
  Email         VARCHAR(64) NOT NULL ,
  UserID        INT NOT NULL ,
@@ -150,7 +150,7 @@ CREATE TABLE RequsetAddress
 (
  ReqAddID  INT NOT NULL auto_increment,
  street    VARCHAR(128) NOT NULL ,
- street2   VARCHAR(128) NOT NULL ,
+ street2   VARCHAR(128) ,
  city      VARCHAR(32) NOT NULL ,
  state     VARCHAR(32) NOT NULL ,
  zipcode   VARCHAR(15) NOT NULL ,

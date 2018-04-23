@@ -42,7 +42,7 @@ namespace WebApplication42.Models
 
         public string Street2 { get; set; }
 
-        public string Apt { get; set; }
+       // public string Apt { get; set; }
         [Required]
         public string City { get; set; }
         [Required]

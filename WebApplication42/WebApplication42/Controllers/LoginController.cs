@@ -10,6 +10,7 @@ namespace WebApplication42.Controllers
 {
     public class LoginController : Controller
     {
+        
         public ActionResult login()
         {
 
@@ -39,7 +40,17 @@ namespace WebApplication42.Controllers
 
                         // return RedirectToAction("loggedin", "AccessCheck", vl);
                         var use = db.userinformations.SingleOrDefault(x => x.UserID.ToString() == user);
-                        return RedirectToAction("Index", "Home", use);
+                        //  return RedirectToAction("Index", "Home", use);
+                        List<userinformation> uinformation = new List<userinformation>();
+                        uinformation = db.userinformations.ToList();
+                        String name = null;
+                        foreach (var v2 in uinformation)
+                        {
+                            if (vl.UserID.Equals(v2.UserID))
+                                name = v2.FirstName.ToString() +" " +v2.LastName.ToString();
+                        }
+                        ViewBag.Message = "Welcome " + name + "!";
+                        return View();
                     }
                 }
 
@@ -48,8 +59,9 @@ namespace WebApplication42.Controllers
             return View();
         }
         // POST: Login/Create
-        public ActionResult loggedin()
+        public ActionResult loggedin(String name)
         {
+            ViewBag.Message = name +" has logged in";
             return View();
         }
     }

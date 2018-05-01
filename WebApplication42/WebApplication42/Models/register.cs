@@ -28,10 +28,10 @@ namespace WebApplication42.Models
         public string MiddleInitial { get; set; }
 
         [Required(ErrorMessage = "Phone number is required")]
-        //[Phone]
-        //[DataType(DataType.PhoneNumber)]
-        //[RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
-        public long Phone { get; set; }
+        [Phone]
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
+        public string Phone { get; set; }
 
         [Required(ErrorMessage = "EmailAddress is required")]
         [StringLength(64, ErrorMessage = "Must be between 5 and 64 characters", MinimumLength = 5)]

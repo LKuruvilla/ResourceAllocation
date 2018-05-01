@@ -73,7 +73,7 @@ namespace WebApplication42.Controllers
             }
             else
             {
-                ViewBag.message = "No one is logged in!";
+                ViewBag.message = "You aren't logged in!";
                 return View("../Home/Index");
             }
         }

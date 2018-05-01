@@ -20,33 +20,37 @@
                 <th>Description</th>
                 <th></th>
                 <th></th>
+                <th></th>
 
             </tr>
             @foreach (var item in Model.Items.Where(x => x.UserID == Model.id))
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.EventID)<br />
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)<br />
-                    </td>
-                    <td>
-                        @Html.ActionLink("Volunteer", "Create", "Volunteer", new { id = item.EventID }, null)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Request Help", "Create", "Request", new { id = item.EventID }, null)
-                    </td>
-                    <td>
-                        @*@Html.DisplayFor(modelItem => item.eventaddresses.FirstOrDefault().city)<br />*@
-                    </td>
-                    <td>
-                        @*@Html.DisplayFor(modelItem => item.eventaddresses.FirstOrDefault().state)<br />*@
-                    </td>
-                    <td>
-                        @*@Html.DisplayFor(modelItem => item.eventaddresses.FirstOrDefault().zipcode)<br />*@
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EventID)<br />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)<br />
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "EventDetail", "Event", new { id = item.EventID }, null)
+                </td>
+                <td>
+                    @Html.ActionLink("Volunteer", "Create", "Volunteer", new { id = item.EventID }, null)
+                </td>
+                <td>
+                    @Html.ActionLink("Request Help", "Create", "Request", new { id = item.EventID }, null)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.eventaddresses.FirstOrDefault().city)<br />*@
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.eventaddresses.FirstOrDefault().state)<br />*@
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.eventaddresses.FirstOrDefault().zipcode)<br />*@
+                </td>
+            </tr>
             }
         </table>
         <div>

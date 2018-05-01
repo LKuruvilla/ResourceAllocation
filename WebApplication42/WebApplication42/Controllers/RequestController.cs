@@ -13,8 +13,6 @@ namespace WebApplication42.Controllers
         // GET: Request
         public ActionResult Index()
         {
-
-
             return View();
         }
 
@@ -45,42 +43,53 @@ namespace WebApplication42.Controllers
         [HttpPost]
         public ActionResult Create(reqtab v)
         {
+            if (ModelState.IsValid)
+            {
+                using (DBModels db = new DBModels())
+                {
+                    //string name = HttpContext.User.Identity.Name;
+
+                    requsetaddress ra = new requsetaddress();
+                    ra.city = v.City;
+                    ra.street = v.Street;
+                    ra.street2 = v.Apt;
+                    ra.state = v.State;
+                    ra.zipcode = v.ZipCode;
+                    ra.ReqAddID = v.RequestaddID;
+                    ra.RequestID = v.RequestID;
+
+                    db.requsetaddresses.Add(ra);
+
+                    requestresource rs = new requestresource();
+                    rs.RequestID = v.RequestID;
+                    rs.Amount = v.amount;
+                    rs.Description = v.description;
+                    rs.Delivered = v.delivered;
+                    rs.EventID = v.eventID;
+                    rs.ResourceID = v.resourceID;
+                    rs.userID = v.userID;
+
+                    db.requestresources.Add(rs);
+
+                    db.SaveChanges();
+                }
+                return RedirectToAction("Posted");
+            }
+            //We have an error return the model to the view
+
+            
+           
             using (DBModels db = new DBModels())
             {
-                //string name = HttpContext.User.Identity.Name;
+                var resourc = db.resourcetypes.ToList<resourcetype>().ToList();
+                v.resourceList = new SelectList(resourc.Select(x => new { Value = x.ResourceID, Text = x.Description }),
+                   "Value",
+                   "Text"
+                   );
 
-
-                requsetaddress ra = new requsetaddress();
-                ra.city = v.City;
-                ra.street = v.Street;
-                ra.street2 = v.Apt;
-                ra.state = v.State;
-                ra.zipcode = v.ZipCode;
-                ra.ReqAddID = v.RequestaddID;
-                ra.RequestID = v.RequestID;
-
-
-                db.requsetaddresses.Add(ra);
-
-                requestresource rs = new requestresource();
-                rs.RequestID = v.RequestID;
-                rs.Amount = v.amount;
-                rs.Description = v.description;
-                rs.Delivered = v.delivered;
-                rs.EventID = v.eventID;
-                rs.ResourceID = v.resourceID;
-                rs.userID = v.userID;
-
-                db.requestresources.Add(rs);
-
-
-
-                db.SaveChanges();
             }
-            return RedirectToAction("Posted");
+            return View(v);
 
-            //We have an error return the model to the view
-            return View();//v);
         }
         public ActionResult Posted()
         {

@@ -28,20 +28,18 @@ namespace WebApplication42.Controllers
 
                     //some parameters to keep track
                     int size;
-                    int difference1 =0, difference2 =0;
+                    int difference1 = 0, difference2 = 0;
 
-                    
-                    
                     //If volunteers are more than requesteors
                     if (ua.Count > ra.Count)
                     {
                         //set the matrix size to the largest of the two
-                        size = ua.Count; 
+                        size = ua.Count;
                         //keep a track of how much larger volunteers are then requestors
                         difference1 = ua.Count - ra.Count;
                     }
 
-                    else if (ra.Count>ua.Count)
+                    else if (ra.Count > ua.Count)
                     {
                         //set the matrix size to the largest of the two
                         size = ra.Count;
@@ -69,27 +67,22 @@ namespace WebApplication42.Controllers
                     if (difference1 > 0)
                     {
 
-                        for (int i = size; i < ua.Capacity; i++)
-                            for (int j = ra.Count; j < (ra.Count+difference1); j++)
+                        for (int i = size; i < ua.Count; i++)
+                            for (int j = ra.Count; j < (ra.Count + difference1); j++)
                                 matrix[i, j] = 0;//Fills all the remaining requestor columns with 0s
                     }
 
-
-
-
-
                     //variables to store all the address information for volunteers and requestors
                     String Vstreet, Vcity, Vstate, Vzipcode, Rstreet, Rcity, Rstate, Rzipcode;
-                    
-                   
-                    for (int i = 0; i < ua.Capacity; i++)
+
+                    for (int i = 0; i < ua.Count; i++)
                     {
                         //For each row store the volunteer address 
 
-                            Vstreet = ua.ElementAt(i).Street;
-                            Vcity = ua.ElementAt(i).city;
-                            Vstate = ua.ElementAt(i).state;
-                            Vzipcode = ua.ElementAt(i).zipcode;
+                        Vstreet = ua.ElementAt(i).Street;
+                        Vcity = ua.ElementAt(i).city;
+                        Vstate = ua.ElementAt(i).state;
+                        Vzipcode = ua.ElementAt(i).zipcode;
 
                         //Store all address concatnated in string
                         String volunteerlocation = Vstreet + " " + Vcity + " " + Vstate + " " + Vzipcode;
@@ -106,7 +99,7 @@ namespace WebApplication42.Controllers
                             WebClient client = new WebClient();
 
                             String requesterlocation = Rstreet + " " + Rcity + " " + Rstate + " " + Rzipcode;
-                            String location = volunteerlocation + "&destinations=" +requesterlocation;
+                            String location = volunteerlocation + "&destinations=" + requesterlocation;
 
                             //Concatnate the final string and pass it.
                             String maplocation = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + location + /*this is key, put ur key here-->*/ "&key=AIzaSyDghQ0T59XCXI4_-2PEj_0OJnCM2XrynZU";
@@ -116,7 +109,7 @@ namespace WebApplication42.Controllers
                             int time = glossaryTransfer.rows[0].elements[0].duration.value;
 
                             //So finally!!!, all the duration in time is store to their respective columns xD
-                            matrix[i , j] = time;
+                            matrix[i, j] = time;
 
                         }
                     }
@@ -124,7 +117,7 @@ namespace WebApplication42.Controllers
                     return matrix;
                 }
 
-                 void printMatrix(int[,] matrix)
+                void printMatrix(int[,] matrix)
                 {
                     Console.WriteLine("Matrix:");
                     var size = matrix.GetLength(0);
@@ -136,7 +129,7 @@ namespace WebApplication42.Controllers
                     }
                 }
 
-                 String printArray(int[] array)
+                String printArray(int[] array)
                 {
                     Console.WriteLine("Array:");
                     String arraycost = null;
@@ -144,17 +137,17 @@ namespace WebApplication42.Controllers
                     for (int i = 0; i < size; i++)
                     {
                         Console.Write("{0,5:0}", array[i]);
-                        arraycost = arraycost + " "+array[i].ToString();
+                        arraycost = arraycost + " " + array[i].ToString();
                     }
                     Console.WriteLine();
-                    
+
                     return arraycost;
                 }
 
 
                 {
-                    
-                        
+
+
 
 
                     var matrix = generateMatrix();
@@ -169,7 +162,7 @@ namespace WebApplication42.Controllers
                 }
                 //Console.ReadKey();
                 //return (0);
-                
+
 
 
                 //WebClient client = new WebClient();
@@ -184,7 +177,7 @@ namespace WebApplication42.Controllers
 
 
 
-                   
+
 
             }
             return View();

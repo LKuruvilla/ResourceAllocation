@@ -6,7 +6,58 @@
 @if (Model != null)
 {
 
-    <h2>Events</h2>
+    <h2>Your Events</h2>
+    if (Model.id == -1 || Model.Items.Where(x => x.UserID == Model.id).Count() == 0)
+    {
+        <h4>You dont have any events would you like to @Html.ActionLink("create an Event", "Create", "Event") ? </h4>
+
+    }
+    else
+    {
+        <table class="table">
+            <tr>
+                <th>Event ID</th>
+                <th>Description</th>
+                <th></th>
+                <th></th>
+
+            </tr>
+            @foreach (var item in Model.Items.Where(x => x.UserID == Model.id))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EventID)<br />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)<br />
+                    </td>
+                    <td>
+                        @Html.ActionLink("Volunteer", "Create", "Volunteer", new { id = item.EventID }, null)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Request Help", "Create", "Request", new { id = item.EventID }, null)
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.eventaddresses.FirstOrDefault().city)<br />*@
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.eventaddresses.FirstOrDefault().state)<br />*@
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.eventaddresses.FirstOrDefault().zipcode)<br />*@
+                    </td>
+                </tr>
+            }
+        </table>
+        <div>
+            @Html.ActionLink("Create a new Event.", "Create", "Event")
+        </div>
+    }
+
+
+
+
+    <h2>Events near you.</h2>
     <table class="table">
         <tr>
             <th>Event ID</th>
@@ -15,35 +66,32 @@
             <th></th>
 
         </tr>
-        @foreach (var item in Model.Items)
+        @foreach (var item in Model.Items.Where(x => x.UserID != Model.id))
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.EventID)<br />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)<br />
-            </td>
-            <td>
-                @Html.ActionLink("Volunteer", "Create", "Volunteer", new { id = item.EventID }, null)
-            </td>
-            <td>
-                @Html.ActionLink("Request Help", "Create", "Request", new { id = item.EventID }, null)
-            </td>
-            <td>
-                @*@Html.DisplayFor(modelItem => item.eventaddresses.FirstOrDefault().city)<br />*@
-            </td>
-            <td>
-                @*@Html.DisplayFor(modelItem => item.eventaddresses.FirstOrDefault().state)<br />*@
-            </td>
-            <td>
-                @*@Html.DisplayFor(modelItem => item.eventaddresses.FirstOrDefault().zipcode)<br />*@
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EventID)<br />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)<br />
+                </td>
+                <td>
+                    @Html.ActionLink("Volunteer", "Create", "Volunteer", new { id = item.EventID }, null)
+                </td>
+                <td>
+                    @Html.ActionLink("Request Help", "Create", "Request", new { id = item.EventID }, null)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.eventaddresses.FirstOrDefault().city)<br />*@
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.eventaddresses.FirstOrDefault().state)<br />*@
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.eventaddresses.FirstOrDefault().zipcode)<br />*@
+                </td>
+            </tr>
         }
     </table>
 }
 
-    <div>
-        @Html.ActionLink("Create an Event.", "Create","Event")
-    </div>

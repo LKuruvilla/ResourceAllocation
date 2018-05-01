@@ -45,7 +45,7 @@ namespace WebApplication42.Controllers
         [HttpPost]
         public ActionResult Create(voltab v)
         {
-            try
+            if (ModelState.IsValid)
             {
                 using (DBModels db = new DBModels())
                 {
@@ -62,16 +62,24 @@ namespace WebApplication42.Controllers
                     vSource.UserID = v.UserID;
 
                     db.volunteerresources.Add(vSource);
-                    
+
                     db.SaveChanges();
                 }
                 ViewBag.Message = "Thanks for your help!.";
                 return RedirectToAction("Posted");
             }
-            catch
+
+            using (DBModels db = new DBModels())
             {
-                return View();
+
+                var resourc = db.resourcetypes.ToList<resourcetype>().ToList();
+                v.resourceList = new SelectList(resourc.Select(x => new { Value = x.ResourceID, Text = x.Description }),
+                   "Value",
+                   "Text"
+                   );
             }
+
+            return View(v);
         }
 
         // GET: Volunteer/Edit/5

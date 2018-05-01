@@ -14,13 +14,22 @@ namespace WebApplication42.Controllers
         userinformation u = new userinformation();
         public ActionResult Index()
         {
+            string name = HttpContext.User.Identity.Name;
+            int userId = -1;
             List<eve> eves = new List<eve>();
+            
             using (DBModels db = new DBModels())
             {
+                if (db.users.SingleOrDefault(x => x.userName == name) != null)
+                {
+                    userId = db.users.SingleOrDefault(x => x.userName == name).UserID;
+                }
+
                 eves = db.eves.ToList<eve>();
             }
             ListModel<eve> evesModel = new ListModel<eve>(eves);
 
+            evesModel.id = userId;
             return View(evesModel);
         }
 
@@ -43,32 +52,37 @@ namespace WebApplication42.Controllers
         [Authorize]
         public ActionResult Create(CreateEvent c)
         {
-            string name = HttpContext.User.Identity.Name;
-            
-            using (DBModels db = new DBModels())
+            if (ModelState.IsValid)
             {
-                int userId  = db.users.SingleOrDefault(x => x.userName == name).UserID;
+                string name = HttpContext.User.Identity.Name;
 
-                eve e = new eve();
-                e.EventID = c.EventID;
-                e.Description = c.Description;
-                e.UserID = userId; 
+                using (DBModels db = new DBModels())
+                {
+                    int userId = db.users.SingleOrDefault(x => x.userName == name).UserID;
 
-                db.eves.Add(e);
+                    eve e = new eve();
+                    e.EventID = c.EventID;
+                    e.Description = c.Description;
+                    e.UserID = userId;
 
-                eventaddress ea = new eventaddress();
-                ea.Street = c.street;
-                ea.Street2 = c.street2;
-                ea.city = c.city;
-                ea.state = c.state;
-                ea.zipcode = c.zipcode;
-                db.eventaddresses.Add(ea);
+                    db.eves.Add(e);
 
-                db.SaveChanges();
+                    eventaddress ea = new eventaddress();
+                    ea.Street = c.street;
+                    ea.Street2 = c.street2;
+                    ea.city = c.city;
+                    ea.state = c.state;
+                    ea.zipcode = c.zipcode;
+                    db.eventaddresses.Add(ea);
+
+                    db.SaveChanges();
+                }
+
+                ViewBag.Message = "Your event has been created.";
+                return RedirectToAction("Posted");
             }
 
-            ViewBag.Message = "Your event has been created.";
-            return RedirectToAction("Posted");
+            return View(c);
         }
 
         [Authorize]

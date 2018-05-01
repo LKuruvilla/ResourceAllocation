@@ -27,55 +27,71 @@ namespace WebApplication42.Controllers
         [HttpPost]
         public ActionResult Register(register v)
         {
-            //if(ModelState.IsValid)
-            //{ 
-
-            using (DBModels db = new DBModels())
+            if (ModelState.IsValid)
             {
-                user u = new user();
-                u.UserID = v.userid;
-                u.userName = v.UserName;
-                u.Password = v.Password;
 
-                db.users.Add(u);
-
-                useraddress ua = new useraddress();
-                ua.AddID = v.addid;
-                ua.Street = v.Street;
-                ua.Street2 = v.Street2;
-                ua.city = v.City;
-                ua.zipcode = v.ZipCode;
-                ua.state = v.State;
-                ua.UserID = v.userid;
-
-                db.useraddresses.Add(ua);
-
-                userinformation ui = new userinformation();
-                ui.UiID = v.UiID;
-                ui.FirstName = v.FirstName;
-                ui.LastName = v.LastName;
-                ui.MiddleInitial = v.MiddleInitial;
-                ui.Phone = v.Phone.ToString();
-                ui.Email = v.EMail;
-                ui.UserID = v.userid;
+                using (DBModels db = new DBModels())
+                {
+                    if(db.users.SingleOrDefault(x => x.userName == v.UserName) != null)
+                    {
+                        ViewBag.x = "yes";
+                        return View();
+                    }
+                    else if(db.userinformations.SingleOrDefault(x => x.Email == v.EMail) != null)
+                    {
+                        ViewBag.UserNameExists = "That email address is taken.";
+                        return View();
+                    }
+                }
 
 
-                db.userinformations.Add(ui);
+                using (DBModels db = new DBModels())
+                {
+                    user u = new user();
+                    u.UserID = v.userid;
+                    u.userName = v.UserName;
+                    u.Password = v.Password;
 
-                db.SaveChanges();
-            }
-            return RedirectToAction("AccountRegistered");
+                    db.users.Add(u);
+
+                    useraddress ua = new useraddress();
+                    ua.AddID = v.addid;
+                    ua.Street = v.Street;
+                    ua.Street2 = v.Street2;
+                    ua.city = v.City;
+                    ua.zipcode = v.ZipCode;
+                    ua.state = v.State;
+                    ua.UserID = v.userid;
+
+                    db.useraddresses.Add(ua);
+
+                    userinformation ui = new userinformation();
+                    ui.UiID = v.UiID;
+                    ui.FirstName = v.FirstName;
+                    ui.LastName = v.LastName;
+                    ui.MiddleInitial = v.MiddleInitial;
+                    ui.Phone = v.Phone.ToString();
+                    ui.Email = v.EMail;
+                    ui.UserID = v.userid;
+
+
+                    db.userinformations.Add(ui);
+
+                    db.SaveChanges();
+                }
+                return RedirectToAction("AccountRegistered");
 
 
             //If there were errors in data return view
-        //}return View(v);
+            }
+
+            return View(v);
         }
 
         //successfull registration
         public ActionResult AccountRegistered()
         {
-            
-                return View();
+            return View();
         }
 
         

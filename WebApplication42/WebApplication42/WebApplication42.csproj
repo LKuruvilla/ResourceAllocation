@@ -196,6 +196,7 @@
     <Compile Include="Models\eventaddress.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EventDetails.cs" />
     <Compile Include="Models\ListModel.cs" />
     <Compile Include="Models\register.cs" />
     <Compile Include="Models\reqtab.cs" />

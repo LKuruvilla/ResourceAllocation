@@ -13,8 +13,6 @@ namespace WebApplication42.Controllers
         
         public ActionResult login()
         {
-
-
             return View();
         }
         [HttpPost]
@@ -50,7 +48,7 @@ namespace WebApplication42.Controllers
                                 name = v2.FirstName.ToString() +" " +v2.LastName.ToString();
                         }
                         ViewBag.Message = "Welcome " + name + "!";
-                        return View();
+                        return View("../Home/Index");
                     }
                 }
 
@@ -62,7 +60,22 @@ namespace WebApplication42.Controllers
         public ActionResult loggedin(String name)
         {
             ViewBag.Message = name +" has logged in";
-            return View();
+            return View("Home/Index");
+        }
+
+        public ActionResult Logout()
+        {
+            if(User.Identity.IsAuthenticated)
+            {
+                FormsAuthentication.SignOut();
+                ViewBag.message = "You have been logged out!";
+                return View("../Home/Index");
+            }
+            else
+            {
+                ViewBag.message = "No one is logged in!";
+                return View("../Home/Index");
+            }
         }
     }
 }

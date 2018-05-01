@@ -16,9 +16,17 @@ namespace WebApplication42.Models
     public class voltab
     {
         //VRID 
+
+        [Required(ErrorMessage = "An amount is required")]
+        [Range (1, int.MaxValue, ErrorMessage = "Please enter a value bigger than {1}")]
         public int Amount { get; set; }
+
+        [Required(ErrorMessage = "A description is required")]
+        [StringLength(256, ErrorMessage = "Must be between 5 and 256 characters", MinimumLength = 5)]
         public string Description { get; set; }
+
         public int Delivered { get; set; }
+
         public int UserID { get; set; }
 
         public int ResourceID { get; set; }
